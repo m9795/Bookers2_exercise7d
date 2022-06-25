@@ -8,9 +8,12 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   
-  <div class="field" id="star">
-    <%= f.label :rate, "Rate" %>
-    <%= f.hidden_field :rate, id: :review_star %>
+  <% if book.id === nil %>
+    <div class="field" id="star">
+      <%= f.label :rate, "Rate" %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+  
     <script>
       $('#star').raty({
         size     : 36,
@@ -21,8 +24,21 @@
         half: true,
       });
     </script>
-  </div>
-
+  <% else %>
+    <span id="star-rate-<%= book.id %>"></span>
+    <script>
+      $('#star-rate-<%= book.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('star-off.png') %>",
+        starOn: "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= book.rate %>,
+      });
+    </script>
+  <% end %>
+    
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
