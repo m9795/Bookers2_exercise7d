@@ -1,4 +1,4 @@
-<%= form_with model:book,local:true do |f| %>
+<%= form_with model: book, local:true do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
@@ -7,6 +7,22 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  
+  <div class="field" id="star">
+    <%= f.label :rate, "Rate" %>
+    <%= f.hidden_field :rate, id: :review_star %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'post[rate]',   # rateカラムへの保存
+        half: true,   # 星半分の入力
+      });
+    </script>
+  </div>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
