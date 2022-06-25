@@ -7,15 +7,16 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "jquery"
+import jQuery from "jquery"
 import "popper.js"
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application" 
-import "raty-js"
+import raty from 'raty-js'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-window.$ = window.jQuery = require('jquery');
+global.$ = jQuery;
+window.$ = jQuery;
